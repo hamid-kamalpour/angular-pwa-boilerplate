@@ -11,7 +11,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
       </div>
     </div>
     <button *ngIf="!show && isInstallAvailable && !isStandalone" (click)="showDialog()" class="promp">
-      @VGE Push me honey
+     Click to install
     </button>
   `,
     styles: [`
@@ -23,10 +23,6 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
   `]
 })
 export class PwaInstallComponent implements OnInit {
-    @Output() installSuccess = new EventEmitter<string>();
-    @Output() installFail = new EventEmitter<string>();
-    @Output() installAvailable = new EventEmitter<string>();
-    @Output() userChoiceResult = new EventEmitter<string>();
 
     deferredPrompt: any = null;
     isInstallAvailable = false;
@@ -76,4 +72,5 @@ export class PwaInstallComponent implements OnInit {
             this.hideDialog();
         });
     }
+
 }
