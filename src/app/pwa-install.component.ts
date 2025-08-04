@@ -11,7 +11,7 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
       </div>
     </div>
     <button *ngIf="!show && isInstallAvailable && !isStandalone" (click)="showDialog()" class="promp">
-     Click to install
+      Click to install
     </button>
   `,
     styles: [`
@@ -38,11 +38,9 @@ export class PwaInstallComponent implements OnInit {
             e.preventDefault();
             this.deferredPrompt = e;
             this.isInstallAvailable = true;
-            this.installAvailable.emit('App install available');
         });
 
         window.addEventListener('appinstalled', () => {
-            this.installSuccess.emit('App install success');
             this.hideDialog();
         });
     }
@@ -57,20 +55,15 @@ export class PwaInstallComponent implements OnInit {
 
     installPwa() {
         if (!this.deferredPrompt) {
-            this.installFail.emit('No install prompt available');
             return;
         }
         this.deferredPrompt.prompt();
         this.deferredPrompt.userChoice.then((result: any) => {
-            this.userChoiceResult.emit(result.outcome);
             if (result.outcome === 'accepted') {
-                this.installSuccess.emit('App install success');
             } else {
-                this.installFail.emit('App install dismissed');
             }
             this.deferredPrompt = null;
             this.hideDialog();
         });
     }
-
 }
