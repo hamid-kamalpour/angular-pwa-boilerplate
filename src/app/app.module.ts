@@ -3,10 +3,12 @@ import { NgModule, isDevMode } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { PwaInstallComponent } from './pwa-install.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PwaInstallComponent
   ],
   imports: [
     BrowserModule,
